@@ -1,0 +1,13 @@
+extends layouts/flow-layout.pug
+
+block content
+    script. 
+        let postID = '!{postID}';
+    .title 
+        h1 #{pageTitle}
+    .postsContainer
+    +createPostModals(userLoggedIn)
+    
+block scripts
+    script(src="/js/postPage.js" crossorigin="anonymous") 
+    

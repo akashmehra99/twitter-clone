@@ -1,0 +1,23 @@
+extends layouts/flow-layout.pug
+
+block content
+    .title
+        h1 #{pageTitle}
+    if !profileUser
+        span.errorMessage This profile doesn't exists.
+    else
+        .profileHeaderContainer 
+            .coverPhotoContainer 
+
+                .userImageContainer 
+                    img(src=profileUser.profilePic, alt="user image")
+            if profileUser._id != userLoggedIn._id
+                .profileButtonsContainer
+                    a.profileButton(href=`/messages/${profileUser._id}`) 
+                        i.fas.fa-envelope
+                    +createFollowButton(profileUser, true)
+        .postsContainer
+        +createPostModals(userLoggedIn)
+        
+block scripts
+    script(src="/js/profilePage.js" crossorigin="anonymous") 

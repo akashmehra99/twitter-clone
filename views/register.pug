@@ -1,0 +1,27 @@
+extends layouts/register-layout.pug
+block registerContent
+    .registerContainer 
+        h1 Register
+        form#registerForm(method="post", onsubmit="validateRegisterForm(event)")
+            p.errorMessage #{errorMessage}
+            input#firstName(type="text", name="firstName", placeholder="First Name", value=firstName required="", autocomplete="off")
+            input#lastName(type="text", name="lastName", placeholder="Last Name", value=lastName required="", autocomplete="off")
+            input#username(type="text", name="username", placeholder="User Name", value=username required="", autocomplete="off")
+            input#email(type="email", name="email", placeholder="Email", required="", value=email autocomplete="off")
+            input#password(type="password", name="password", placeholder="Password", required="", autocomplete="off")
+            input#passwordConf(type="password", name="passwordConf", placeholder="Confirm Password", required="", autocomplete="off")
+            input(type="submit", value="Register")
+        a(href="/login") Already have an account? Login here.
+    script.
+        var password = document.getElementById("password");
+        var passwordConf = document.getElementById("passwordConf");
+        var registerForm = document.getElementById("registerForm");
+        function validateRegisterForm(event) {
+            event.preventDefault();
+            if (password.value !== passwordConf.value) {
+            alert("Password dont match");
+            } else {
+                registerForm.submit();
+            }
+        }
+        

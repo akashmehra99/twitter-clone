@@ -1,0 +1,555 @@
+:root {
+  --blue: #1fa2f1;
+  --blue-background: rgba(212, 237, 255, 0.6);
+  --buttonHoverBg: #d4edff;
+  --lightGrey: rgba(230, 236, 240, 1);
+  --spacing: 15px;
+  --blueLight: #93d0f7;
+  --greyText: rgb(110, 127, 141);
+  --greyBtnText: rgba(0, 0, 0, 0.34);
+  --red: rgb(226, 34, 94);
+  --redBackground: rgba(226, 34, 94, 0.1);
+  --green: rgb(23, 191, 99);
+  --greenBackground: rgba(23, 191, 99, 0.1);
+}
+body {
+  color: #4a4a4a;
+}
+
+a,
+a:hover,
+a:visited {
+  color: inherit;
+  text-decoration: none;
+}
+
+h1 {
+  font-size: 19px;
+  font-weight: 800;
+  margin: 0;
+}
+
+.wrapper {
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  margin-bottom: 1.5rem;
+  padding: 5px 10px;
+  border-radius: 2px;
+  border: 1px solid #dedede;
+  background: #f2f2f2;
+}
+
+input[type="submit"] {
+  background: #0099ff;
+  color: #ffffff;
+  outline: none;
+  border: none;
+  border-radius: 2px;
+  margin-bottom: 1rem;
+  padding: 5px 10px;
+}
+
+nav {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  height: 100%;
+}
+
+nav a {
+  display: flex;
+  padding: 10px;
+  font-size: 30px;
+  width: 55px;
+  height: 55px;
+  align-items: center;
+  justify-content: center;
+}
+
+nav a:hover {
+  background-color: var(--buttonHoverBg);
+  color: var(--button);
+  border-radius: 50%;
+}
+
+nav a.blue {
+  color: var(--blue);
+}
+
+.mainSectionContainer {
+  border: 1px solid var(--lightGrey);
+  border-bottom: none;
+  padding: 0;
+}
+
+.mainSectionContainer .title {
+  height: 55px;
+  padding: 0 var(--spacing);
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid var(--lightGrey);
+  flex-shrink: 0;
+}
+
+.mainSectionContainer .title h1 {
+  flex: 1;
+}
+
+.postFormContainer {
+  display: flex;
+  padding: var(--spacing);
+  border-bottom: 10px solid rgb(230, 236, 240);
+  flex-shrink: 0;
+}
+
+.modal .postFormContainer {
+  border: none;
+  padding: var(--spacing) 0 0 0;
+}
+
+.postFormContainer .userImageContainer,
+.postsContainer .userImageContainer,
+#originalPostContainer .userImageContainer {
+  width: 50px;
+  height: 50px;
+}
+
+.postFormContainer .userImageContainer img,
+.postsContainer .userImageContainer img,
+#originalPostContainer .userImageContainer img {
+  width: 100%;
+  border-radius: 50%;
+  background: #ffffff;
+}
+
+.postFormContainer .textareaContainer {
+  flex: 1;
+  padding-left: var(--spacing);
+}
+
+.postFormContainer .textareaContainer textarea {
+  width: 100%;
+  border: none;
+  resize: none;
+  font-size: 19px;
+}
+
+.postFormContainer .textareaContainer #submitPostButton {
+  background: var(--blue);
+  color: #ffffff;
+  border: none;
+  border-radius: 40px;
+  padding: 7px 15px;
+}
+
+.postFormContainer .textareaContainer #submitPostButton:disabled {
+  background: var(--blueLight);
+}
+
+.postsContainer .post {
+  display: flex;
+  flex-direction: column;
+  padding: var(--spacing);
+  cursor: pointer;
+  border-bottom: 1px solid var(--lightGrey);
+  flex-shrink: 1;
+}
+
+#originalPostContainer .post {
+  display: flex;
+  flex-direction: column;
+  padding: 0 0 var(--spacing) 0;
+  cursor: pointer;
+  border-bottom: 1px solid var(--lightGrey);
+  flex-shrink: 1;
+}
+
+.postsContainer .post .mainContentContainer,
+#originalPostContainer .post .mainContentContainer {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+}
+
+.postsContainer .post .postActionContainer,
+#originalPostContainer .post .postActionContainer {
+  padding-left: 65px;
+  color: var(--greyText);
+  font-size: 13px;
+}
+
+.postsContainer .post .mainContentContainer .postContentContainer,
+#originalPostContainer .post .mainContentContainer .postContentContainer {
+  padding-left: var(--spacing);
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.postsContainer
+  .post
+  .mainContentContainer
+  .postContentContainer
+  .postHeader
+  .username,
+.postsContainer
+  .post
+  .mainContentContainer
+  .postContentContainer
+  .postHeader
+  .date,
+#originalPostContainer
+  .post
+  .mainContentContainer
+  .postContentContainer
+  .postHeader
+  .date,
+#originalPostContainer
+  .post
+  .mainContentContainer
+  .postContentContainer
+  .postHeader
+  .username {
+  color: var(--greyText);
+  padding-right: 5px;
+}
+
+.postsContainer
+  .post
+  .mainContentContainer
+  .postContentContainer
+  .postHeader
+  .fullName,
+#originalPostContainer
+  .post
+  .mainContentContainer
+  .postContentContainer
+  .postHeader
+  .fullName {
+  font-weight: bold;
+  padding-right: 5px;
+}
+
+.postsContainer
+  .post
+  .mainContentContainer
+  .postContentContainer
+  .postHeader
+  .fullName:hover,
+#originalPostContainer
+  .post
+  .mainContentContainer
+  .postContentContainer
+  .postHeader
+  .fullName:hover {
+  text-decoration: underline;
+}
+
+.postsContainer .post .mainContentContainer .postContentContainer .postFooter,
+#originalPostContainer
+  .post
+  .mainContentContainer
+  .postContentContainer
+  .postFooter {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  align-items: center;
+}
+
+.postsContainer
+  .post
+  .mainContentContainer
+  .postContentContainer
+  .postFooter
+  .postButtonContainer,
+#originalPostContainer
+  .post
+  .mainContentContainer
+  .postContentContainer
+  .postFooter
+  .postButtonContainer {
+  flex: 1;
+  color: var(--greyBtnText);
+}
+
+.postsContainer
+  .post
+  .mainContentContainer
+  .postContentContainer
+  .postFooter
+  .postButtonContainer.red.active,
+.postsContainer
+  .post
+  .mainContentContainer
+  .postContentContainer
+  .postFooter
+  .postButtonContainer.red
+  button:hover,
+.postsContainer
+  .post
+  .mainContentContainer
+  .postContentContainer
+  .postFooter
+  .postButtonContainer.red.active
+  button,
+#originalPostContainer
+  .post
+  .mainContentContainer
+  .postContentContainer
+  .postFooter
+  .postButtonContainer.red.active,
+#originalPostContainer
+  .post
+  .mainContentContainer
+  .postContentContainer
+  .postFooter
+  .postButtonContainer.red
+  button:hover,
+#originalPostContainer
+  .post
+  .mainContentContainer
+  .postContentContainer
+  .postFooter
+  .postButtonContainer.red.active
+  button {
+  color: var(--red);
+}
+
+.postsContainer
+  .post
+  .mainContentContainer
+  .postContentContainer
+  .postFooter
+  .postButtonContainer.red
+  button:hover,
+#originalPostContainer
+  .post
+  .mainContentContainer
+  .postContentContainer
+  .postFooter
+  .postButtonContainer.red
+  button:hover {
+  background-color: var(--redBackground);
+}
+
+.postsContainer .post .mainContentContainer .postContentContainer .replyFlag,
+#originalPostContainer
+  .post
+  .mainContentContainer
+  .postContentContainer
+  .replyFlag {
+  margin-bottom: 5px;
+}
+
+.postsContainer .post .mainContentContainer .postContentContainer .replyFlag a,
+#originalPostContainer
+  .post
+  .mainContentContainer
+  .postContentContainer
+  .replyFlag
+  a {
+  color: var(--blue);
+}
+
+.postsContainer
+  .post
+  .mainContentContainer
+  .postContentContainer
+  .postFooter
+  .postButtonContainer.green.active,
+.postsContainer
+  .post
+  .mainContentContainer
+  .postContentContainer
+  .postFooter
+  .postButtonContainer.green
+  button:hover,
+.postsContainer
+  .post
+  .mainContentContainer
+  .postContentContainer
+  .postFooter
+  .postButtonContainer.green.active
+  button,
+#originalPostContainer
+  .post
+  .mainContentContainer
+  .postContentContainer
+  .postFooter
+  .postButtonContainer.green.active,
+#originalPostContainer
+  .post
+  .mainContentContainer
+  .postContentContainer
+  .postFooter
+  .postButtonContainer.green
+  button:hover,
+#originalPostContainer
+  .post
+  .mainContentContainer
+  .postContentContainer
+  .postFooter
+  .postButtonContainer.green.active
+  button {
+  color: var(--green);
+}
+
+.postsContainer
+  .post
+  .mainContentContainer
+  .postContentContainer
+  .postFooter
+  .postButtonContainer.green
+  button:hover {
+  background-color: var(--greenBackground);
+}
+
+.postsContainer
+  .post
+  .mainContentContainer
+  .postContentContainer
+  .postFooter
+  .postButtonContainer
+  button,
+#originalPostContainer
+  .post
+  .mainContentContainer
+  .postContentContainer
+  .postFooter
+  .postButtonContainer
+  button,
+.post .mainContentContainer .postContentContainer .postHeader button {
+  border: none;
+  outline: none;
+  background: transparent;
+  color: var(--greyBtnText);
+  width: 30px;
+  height: 30px;
+}
+
+.post .mainContentContainer .postContentContainer .postHeader button {
+  float: right;
+}
+
+.postsContainer
+  .post
+  .mainContentContainer
+  .postContentContainer
+  .postFooter
+  .postButtonContainer
+  button:hover,
+#originalPostContainer
+  .post
+  .mainContentContainer
+  .postContentContainer
+  .postFooter
+  .postButtonContainer
+  button:hover {
+  background-color: var(--blueLight);
+  color: var(--blue);
+  border-radius: 50%;
+}
+
+.postsContainer
+  .post
+  .mainContentContainer
+  .postContentContainer
+  .postFooter
+  .postButtonContainer
+  button
+  i,
+.postsContainer
+  .post
+  .mainContentContainer
+  .postContentContainer
+  .postFooter
+  .postButtonContainer
+  button
+  span,
+#originalPostContainer
+  .post
+  .mainContentContainer
+  .postContentContainer
+  .postFooter
+  .postButtonContainer
+  button
+  i,
+#originalPostContainer
+  .post
+  .mainContentContainer
+  .postContentContainer
+  .postFooter
+  .postButtonContainer
+  button
+  span {
+  pointer-events: none;
+}
+
+button.close {
+  border: none;
+  outline: none;
+  background: transparent;
+}
+
+.postsContainer
+  .post.largeFont
+  .mainContentContainer
+  .postContentContainer
+  .postBody
+  span {
+  font-size: 23px;
+}
+
+.errorMessage {
+  padding: var(--spacing);
+}
+
+.profileHeaderContainer .coverPhotoContainer {
+  height: 180px;
+  background: var(--blue);
+  position: relative;
+}
+
+.profileHeaderContainer .coverPhotoContainer .userImageContainer {
+  width: 132px;
+  height: 132px;
+  position: absolute;
+  bottom: -70px;
+}
+
+.profileHeaderContainer .coverPhotoContainer .userImageContainer img {
+  width: 100%;
+}
+
+.profileHeaderContainer .profileButtonsContainer {
+  text-align: right;
+  padding: var(--spacing);
+}
+
+.profileHeaderContainer .profileButtonsContainer .profileButton,
+.profileHeaderContainer .profileButtonsContainer .followButton {
+  border-radius: 60px;
+  border: 1px solid var(--blue);
+  font-weight: bold;
+  padding: 5px 15px;
+  color: var(--blue);
+  display: inline-block;
+  margin-left: var(--spacing);
+  background: none;
+}
+
+.profileHeaderContainer .profileButtonsContainer .followButton.following {
+  color: #ffffff;
+  background: var(--blue);
+}
+
+.profileHeaderContainer .profileButtonsContainer .profileButton:hover,
+.profileHeaderContainer .profileButtonsContainer .followButton:hover {
+  background: var(--blue-background);
+}

@@ -1,0 +1,25 @@
+.wrapper .loginContainer {
+  padding: 1.5rem;
+  width: 80%;
+  max-width: 500px;
+  border: 1px solid #dedede;
+  border-radius: 5px;
+  background: #ffffff;
+  text-align: center;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+}
+
+.wrapper .loginContainer form {
+  display: flex;
+  flex-direction: column;
+}
+
+.wrapper {
+  display: flex;
+}
+
+body {
+  background-color: #0099ff;
+}

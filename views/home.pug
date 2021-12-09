@@ -1,0 +1,12 @@
+extends layouts/flow-layout.pug
+
+block content
+    .title 
+        h1 Home
+    +createPostForm(userLoggedIn)
+    .postsContainer
+    +createPostModals(userLoggedIn)
+    
+block scripts
+    script(src="/js/home.js" crossorigin="anonymous") 
+    
