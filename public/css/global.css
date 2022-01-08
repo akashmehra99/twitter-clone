@@ -114,6 +114,7 @@ nav a.blue {
 
 .postFormContainer .userImageContainer,
 .postsContainer .userImageContainer,
+.user .userImageContainer,
 #originalPostContainer .userImageContainer {
   width: 50px;
   height: 50px;
@@ -121,6 +122,7 @@ nav a.blue {
 
 .postFormContainer .userImageContainer img,
 .postsContainer .userImageContainer img,
+.user .userImageContainer img,
 #originalPostContainer .userImageContainer img {
   width: 100%;
   border-radius: 50%;
@@ -214,7 +216,8 @@ nav a.blue {
   .mainContentContainer
   .postContentContainer
   .postHeader
-  .username {
+  .username,
+.username {
   color: var(--greyText);
   padding-right: 5px;
 }
@@ -230,7 +233,8 @@ nav a.blue {
   .mainContentContainer
   .postContentContainer
   .postHeader
-  .fullName {
+  .fullName,
+.fullName {
   font-weight: bold;
   padding-right: 5px;
 }
@@ -533,7 +537,8 @@ button.close {
 }
 
 .profileHeaderContainer .profileButtonsContainer .profileButton,
-.profileHeaderContainer .profileButtonsContainer .followButton {
+.profileHeaderContainer .profileButtonsContainer .followButton,
+.followButton {
   border-radius: 60px;
   border: 1px solid var(--blue);
   font-weight: bold;
@@ -544,12 +549,87 @@ button.close {
   background: none;
 }
 
-.profileHeaderContainer .profileButtonsContainer .followButton.following {
+.profileHeaderContainer .profileButtonsContainer .followButton.following,
+.followButton.following {
   color: #ffffff;
   background: var(--blue);
 }
 
 .profileHeaderContainer .profileButtonsContainer .profileButton:hover,
-.profileHeaderContainer .profileButtonsContainer .followButton:hover {
+.profileHeaderContainer .profileButtonsContainer .followButton:hover,
+.followButton:hover {
   background: var(--blue-background);
+}
+
+.profileHeaderContainer .userDetailsContainer {
+  display: flex;
+  margin-top: 45px;
+  flex-direction: column;
+  padding: 0 var(--spacing);
+}
+
+.followersContainer .value {
+  font-weight: bold;
+  margin-right: 5px;
+}
+
+.followersContainer span:not(.value) {
+  color: var(--greyText);
+}
+
+.followersContainer a {
+  margin-right: 15px;
+}
+
+.followersContainer a:hover {
+  border-bottom: 1px solid black;
+}
+
+.tabsContainer {
+  display: flex;
+  border-bottom: 1px solid var(--lightGrey);
+  flex-shrink: 0;
+}
+
+.tab,
+.tab span {
+  flex: 1;
+  height: 52px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--greyText);
+  font-weight: bold;
+}
+
+.tab.active,
+.tab.active span {
+  color: var(--blue);
+  border-bottom: 2px solid var(--blue);
+}
+
+.tab:hover,
+.tab:hover span {
+  color: var(--blue);
+  background-color: var(--blue-background);
+}
+
+.no-results {
+  padding: var(--spacing);
+}
+
+.resultsContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.resultsContainer .user {
+  padding: var(--spacing);
+  display: flex;
+  border-bottom: 1px solid var(--lightGrey);
+}
+
+.user .userDetailsContainer {
+  flex: 1;
+  padding: 0 var(--spacing);
 }

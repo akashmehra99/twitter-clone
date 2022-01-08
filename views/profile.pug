@@ -6,16 +6,40 @@ block content
     if !profileUser
         span.errorMessage This profile doesn't exists.
     else
+        script. 
+            var profileUserId = '!{profileUser._id}';
+            var selectedTab = '!{selectedTab}';
+        - followerCount = profileUser.followers.length
+        - followingCount = profileUser.following.length
         .profileHeaderContainer 
             .coverPhotoContainer 
-
                 .userImageContainer 
                     img(src=profileUser.profilePic, alt="user image")
             if profileUser._id != userLoggedIn._id
                 .profileButtonsContainer
                     a.profileButton(href=`/messages/${profileUser._id}`) 
                         i.fas.fa-envelope
-                    +createFollowButton(profileUser, true)
+                    - var profileUserId = profileUser._id.toString();
+                    - if (userLoggedIn.following && userLoggedIn.following.includes(profileUserId))
+                        +createFollowButton(profileUser, true)
+                    - else 
+                        +createFollowButton(profileUser, false)
+            .userDetailsContainer 
+                span.fullName #{profileUser.firstName} #{profileUser.lastName}
+                span.username @#{profileUser.username}
+
+                .followersContainer 
+                    a(href=`/profile/${profileUser.username}/following`)
+                        span.value #{followingCount}
+                        span Following 
+                    a(href=`/profile/${profileUser.username}/followers`)
+                        span#followersCount.value #{followerCount}
+                        span Followers
+        .tabsContainer 
+            +createTab("Posts", `/profile/${profileUser.username}`, selectedTab !== "replies")
+            +createTab("Replies", `/profile/${profileUser.username}/replies`, selectedTab === "replies")
+
+
         .postsContainer
         +createPostModals(userLoggedIn)
         

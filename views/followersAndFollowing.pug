@@ -1,0 +1,20 @@
+extends layouts/flow-layout.pug
+
+block content
+    .title
+        h1 #{pageTitle}
+    if !profileUser
+        span.errorMessage This profile doesn't exists.
+    else
+        script. 
+            var profileUserId = '!{profileUser._id}';
+            var selectedTab = '!{selectedTab}';
+        
+        .tabsContainer 
+            +createTab("Following", `/profile/${profileUser.username}/following`, selectedTab !== "followers")
+            +createTab("Followers", `/profile/${profileUser.username}/followers`, selectedTab === "followers")
+        
+        .resultsContainer
+        
+block scripts
+    script(src="/js/followersAndFollowing.js" crossorigin="anonymous") 

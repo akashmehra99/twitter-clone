@@ -52,7 +52,7 @@ $("#deletePostModal").on("show.bs.modal", (event) => {
 $("#deletePostButton").click((event) => {
   const postID = $(event.target).data("id");
   $.ajax({
-    url: `api/posts/${postID}`,
+    url: `/api/posts/${postID}`,
     type: "DELETE",
     success: () => {
       location.reload();
@@ -71,7 +71,7 @@ $(document).on("click", ".likeButton", (event) => {
   const likeButtonParent = likeButton.closest(".postButtonContainer");
   if (postID) {
     $.ajax({
-      url: `api/posts/${postID}/like`,
+      url: `/api/posts/${postID}/like`,
       type: "PUT",
       success: (postData) => {
         likeButtonParent.find(".likeCount").text(postData.likes.length || "");
@@ -94,7 +94,7 @@ $(document).on("click", ".retweetButton", (event) => {
   const retweetButtonParent = retweetButton.closest(".postButtonContainer");
   if (postID) {
     $.ajax({
-      url: `api/posts/${postID}/retweet`,
+      url: `/api/posts/${postID}/retweet`,
       type: "POST",
       success: (postData) => {
         retweetButtonParent
@@ -118,6 +118,39 @@ $(document).on("click", ".post", (event) => {
   const postID = getPostIDfromElement(postCard);
   if (postID && !postCard.is("button") && !postCard.is("i")) {
     window.location.href = `post/${postID}`;
+  }
+});
+
+$(document).on("click", ".followButton", (event) => {
+  const followBtn = $(event.target);
+  const userID = followBtn.data().user;
+  if (userID) {
+    $.ajax({
+      url: `/api/users/${userID}/follow`,
+      type: "PUT",
+      success: (data, status, xhr) => {
+        if (xhr.status === 404) {
+          console.log("user not found");
+          return;
+        }
+        let diff = 1;
+        if (data.following && data.following.includes(userID)) {
+          followBtn.addClass("following");
+          followBtn.text("Following");
+        } else {
+          followBtn.removeClass("following");
+          followBtn.text("Follow");
+          diff = -1;
+        }
+        const followersCountElm = $("#followersCount");
+        if (followersCountElm.length) {
+          followersCountElm.text(+followersCountElm.text() + diff);
+        }
+      },
+      error: (error) => console.log("Error in follow -> ", error),
+    });
+  } else {
+    console.log("Post id -> ", postID);
   }
 });
 

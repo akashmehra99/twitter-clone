@@ -27,7 +27,22 @@ const getPosts = async (filter) => {
 };
 
 router.get("/", async (req, res, next) => {
-  const posts = await getPosts({});
+  const searchObj = req.query || {};
+  if (searchObj && searchObj.hasOwnProperty("isReply")) {
+    const isReply = searchObj.isReply == "true";
+    searchObj.replyTo = { $exists: isReply };
+    delete searchObj.isReply;
+  }
+  if (searchObj.followingOnly) {
+    const followingOnly = searchObj.followingOnly == "true";
+    if (followingOnly) {
+      let objectId = [...req.session.user.following];
+      objectId.push(req.session.user._id);
+      searchObj.postedBy = { $in: objectId };
+    }
+    delete searchObj.followingOnly;
+  }
+  const posts = await getPosts(searchObj);
   res.status(200).send(posts);
 });
 

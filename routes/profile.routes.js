@@ -21,9 +21,41 @@ router.get("/", (req, res, next) => {
   res.status(200).render("profile", payload);
 });
 
+router.get("/:username/following", (req, res, next) => {
+  let payload = {
+    pageTitle: req.session.user.username,
+    userLoggedIn: req.session.user,
+    userLoggedInJS: JSON.stringify(req.session.user),
+    profileUser: req.session.user,
+    selectedTab: "following",
+  };
+  res.status(200).render("followersAndFollowing", payload);
+});
+
+router.get("/:username/followers", (req, res, next) => {
+  let payload = {
+    pageTitle: req.session.user.username,
+    userLoggedIn: req.session.user,
+    userLoggedInJS: JSON.stringify(req.session.user),
+    profileUser: req.session.user,
+    selectedTab: "followers",
+  };
+  res.status(200).render("followersAndFollowing", payload);
+});
+
 router.get("/:username", async (req, res, next) => {
   let payload = {
     userLoggedIn: req.session.user,
+    userLoggedInJS: JSON.stringify(req.session.user),
+    ...(await getPayload(req.params.username)),
+  };
+  res.status(200).render("profile", payload);
+});
+
+router.get("/:username/replies", async (req, res, next) => {
+  let payload = {
+    userLoggedIn: req.session.user,
+    selectedTab: "replies",
     userLoggedInJS: JSON.stringify(req.session.user),
     ...(await getPayload(req.params.username)),
   };

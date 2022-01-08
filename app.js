@@ -22,6 +22,7 @@ const postPageRoute = require("./routes/post.routes");
 // API routes
 
 const postAPIRoutes = require("./routes/api/posts.api.routes");
+const userAPIRoutes = require("./routes/api/users.api.routes");
 
 // Session
 const session = require("express-session");
@@ -67,3 +68,4 @@ app.use("/post", middleware.requireLogin, postPageRoute);
 
 // API's
 app.use("/api/posts", postAPIRoutes);
+app.use("/api/users", userAPIRoutes);

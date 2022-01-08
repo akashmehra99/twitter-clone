@@ -41,7 +41,6 @@ router.post("/", async (req, res, next) => {
       res.status(200).render("register", payload);
     });
     if (!user) {
-      console.log("unique user");
       let userData = req.body;
       userData.password = await bcrypt.hash(password, 10);
       User.create(userData)
