@@ -18,6 +18,7 @@ const profileRoute = require("./routes/profile.routes");
 const notificationsRoute = require("./routes/notifications.routes");
 const messagesRoute = require("./routes/messages.routes");
 const postPageRoute = require("./routes/post.routes");
+const uploadsRoute = require("./routes/uploads.routes");
 
 // API routes
 
@@ -65,6 +66,7 @@ app.use("/profile", middleware.requireLogin, profileRoute);
 app.use("/notifications", middleware.requireLogin, notificationsRoute);
 app.use("/messages", middleware.requireLogin, messagesRoute);
 app.use("/post", middleware.requireLogin, postPageRoute);
+app.use("/uploads", middleware.requireLogin, uploadsRoute);
 
 // API's
 app.use("/api/posts", postAPIRoutes);

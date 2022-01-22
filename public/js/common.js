@@ -1,3 +1,5 @@
+var cropper;
+
 $("#postTextarea, #replyTextarea").keyup((event) => {
   const textareaElm = $(event.target);
   const postTextValue = textareaElm.val().trim();
@@ -58,6 +60,94 @@ $("#deletePostButton").click((event) => {
       location.reload();
     },
     error: (error) => console.log("Error in Delete -> ", error),
+  });
+});
+
+$("#filePhoto").change((event) => {
+  const input = event.target;
+  if (
+    (input.files && input.files[0] && input.files[0].type === "image/jpeg") ||
+    input.files[0].type === "image/png"
+  ) {
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      const imgPreview = document.getElementById("imagePreview");
+      imgPreview.setAttribute("src", event.target.result);
+      if (cropper) {
+        cropper.destroy();
+      }
+      cropper = new Cropper(imgPreview, {
+        aspectRatio: 1 / 1,
+        background: false,
+      });
+    };
+    reader.readAsDataURL(input.files[0]);
+  } else {
+    event.target.value = "";
+  }
+});
+
+$("#coverPhoto").change((event) => {
+  const input = event.target;
+  if (
+    (input.files && input.files[0] && input.files[0].type === "image/jpeg") ||
+    input.files[0].type === "image/png"
+  ) {
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      const imgPreview = document.getElementById("coverPhotoPreview");
+      imgPreview.setAttribute("src", event.target.result);
+      if (cropper) {
+        cropper.destroy();
+      }
+      cropper = new Cropper(imgPreview, {
+        aspectRatio: 16 / 9,
+        background: false,
+      });
+    };
+    reader.readAsDataURL(input.files[0]);
+  } else {
+    event.target.value = "";
+  }
+});
+
+$("#imageUploadButton").click(() => {
+  const canvas = cropper.getCroppedCanvas();
+  if (!canvas) {
+    console.log("Please use an image file");
+    return;
+  }
+  canvas.toBlob((blob) => {
+    let formData = new FormData();
+    formData.append("croppedImage", blob);
+    $.ajax({
+      url: "/api/users/profilePicture",
+      type: "POST",
+      data: formData,
+      processData: false,
+      contentType: false,
+      success: () => location.reload(),
+    });
+  });
+});
+
+$("#coverPhotoUploadButton").click(() => {
+  const canvas = cropper.getCroppedCanvas();
+  if (!canvas) {
+    console.log("Please use an image file");
+    return;
+  }
+  canvas.toBlob((blob) => {
+    let formData = new FormData();
+    formData.append("croppedImage", blob);
+    $.ajax({
+      url: "/api/users/coverPhoto",
+      type: "POST",
+      data: formData,
+      processData: false,
+      contentType: false,
+      success: () => location.reload(),
+    });
   });
 });
 
